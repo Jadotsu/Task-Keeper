@@ -1,0 +1,359 @@
+/* Font, Roboto, thin(100), thin(100) italic, and light(300).  */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,100&display=swap');
+
+
+body{
+    background: linear-gradient(to bottom left, #111, #222);
+}
+
+* {
+    user-select: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 100;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    color: #e0e0e0;
+}
+
+#newContainer{
+    transition: opacity 360ms ease;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#menu{
+    height:100vh;
+    width: 240px;
+    background-color: #222225;
+    position: fixed;
+    left:-250px;
+    transition: left 120ms ease;
+    pointer-events: auto;
+}
+
+#menu-back:not(.menu-hide) #menu{
+    left:0;
+}
+
+#menu-back{
+    height:100vh;
+    width:100vw;
+    position: fixed;
+    background-color: transparent;
+    transition: background-color 480ms ease;
+    pointer-events: none;
+
+}
+
+#menu-back:not(.menu-hide){
+    background-color: rgba(0,0,0,33%);
+}
+#menu-list{
+    padding-left:25px;
+    padding-top:60px;
+    display:flex;
+    flex-direction: column;
+    align-items: start;
+}
+#name-input-text{
+    width: 170px;
+}
+#name-input-button{
+    width:24px;
+}
+
+#name-input-div, #reset-all-div, #change-colors-div{
+    overflow: hidden;
+    height: auto;
+    max-height: 0;
+    transition: max-height 240ms ease-out;
+}
+
+#name-input-div:not(.menu-hide){
+    max-height:30px;
+}
+
+#reset-all-div:not(.menu-hide){
+    max-height: 60px;
+}
+#change-colors-div:not(.menu-hide){
+    max-height: 120px;
+}
+
+#name-input-div{
+    display: flex;
+    padding-left:15px;
+}
+
+#reset-all-div{
+    display: flex;
+    flex-direction: column;
+    padding-left:15px;
+    align-items: center;
+}
+
+#change-colors-div{
+    display: flex;
+    flex-direction: column;
+    padding-left:15px;
+    align-items: start;
+}
+
+#reset-all-button{
+    background-color: #BC0E00;
+    border-radius: 2px;
+    align-content: center;
+    width:165px;
+    height:30px;
+}
+#reset-all-button:hover{
+    background-color: #DC0E00;
+}
+#reset-all-button:active{
+    background-color: #AC0E00;
+    font-size: 19px;
+}
+
+.main-width {
+    width: 256px;
+}
+
+#content{
+    width: 280px;
+}
+
+button, input {
+    background-color: transparent;
+    border: none;
+}
+
+.thin {
+    font-weight: 100;
+    font-size: 20px;
+}
+
+.italic {
+    font-style: italic;
+    font-weight: 100;
+    font-size: 20px;
+}
+
+.light {
+    font-weight: 300;
+    font-size: 30px;
+}
+
+@property --colorA {
+    syntax: "<color>";
+    initial-value: #111;
+    inherits: false;
+}
+@property --colorB {
+    syntax: "<color>";
+    initial-value: #222;
+    inherits: false;
+}
+
+#container{
+    opacity: 0;
+    --colorA:#111;
+    --colorB:#222;
+    background:linear-gradient(to bottom left,var(--colorA),var(--colorB));
+    width: 100%;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex:1;
+}
+
+#menu-button{
+    position: absolute;
+    left:25px;
+    top:25px;
+}
+
+#return-button{
+    background-color: rgba(0,0,0,20%);
+    width: 0px;
+    height:30px;
+}
+
+#return-button:not(.hide){
+    font-size: 15px;
+    width: 30px;
+}
+
+.hide{
+    font-size:0;
+}
+
+#header{
+    display:flex;
+    align-items: center;
+    margin: 50px 0 12px;
+}
+
+#title{
+    width:100%;
+    overflow-wrap: break-word;
+}
+
+hr{
+    width: 312px;
+    border: 1px solid #e0e0e0;
+}
+
+#content{
+    flex-grow:1;
+    margin: 22px 0 22px;
+}
+
+.task {
+    list-style: none;
+    cursor: default;
+    margin: 0 0 4px;
+    width:280px;
+    height: 30px;
+    user-select: none;
+    display: flex;
+}
+
+.taskBounds{
+    background-color: rgba(0,0,0,20%);
+    width:232px;
+    display: flex;
+    height: 30px;
+}
+
+.task.checked .taskText{
+    text-decoration: line-through;
+    color:#999;
+}
+
+.taskImage{
+    background-image:url(./images/unchecked.png);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 30px;
+    background-size: 40%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.taskText{
+    padding-right: 5px;
+    overflow-wrap: break-word;
+}
+
+.taskTextContainer{
+    width:204px;
+}
+
+.taskImage p {
+    font-size: 0;
+}
+
+.task.checked .taskImage{
+    background-image:url(./images/checked.png);
+}
+
+.task.folder .taskImage {
+    background-image: none;
+}
+.task.folder .taskImage p{
+    font-size: 14px;
+}
+
+.taskOpen {
+    font-size: 14px;
+    width: 24px;
+    height:30px;
+    margin: 0;
+    text-decoration: none;
+    color: #e0e0e0;
+}
+
+.taskDelete{
+    height:30px;
+    margin: 0;
+    text-decoration: none;
+    color: #e0e0e0;
+}
+
+#input-text{
+    display:block;
+    width:228px;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+
+#notes{
+    margin: 12px 0 50px;
+}
+
+#notes-input{
+    background-color: rgba(0,0,0,20%);
+    height: 200px;
+    width: 100%;
+    text-align: left;
+    resize: none;
+}
+
+/* Improve scrollbars */
+::-webkit-scrollbar{
+    width:10px;
+}
+::-webkit-scrollbar-track{
+    background: rgba(0,0,0,20%);
+}
+::-webkit-scrollbar-thumb{
+    background: rgba(100,100,100,50%);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover{
+    background: rgba(100,100,100,80%);
+}
+
+/* hide placeholder text on focus */
+input:focus::-webkit-input-placeholder
+{
+    color: transparent;
+}
+/* remove outline from text-box on focus */
+textarea:focus, input:focus{
+    outline: none;
+}
+
+::placeholder{
+    color:#CCC;
+    font-style: italic;
+}
+
+#input-div{
+    background-color: rgba(0,0,0,20%);
+    height: 30px;
+    width: 256px;
+    margin: 0 0 4px 24px;
+    display: flex;
+    align-items: center;
+}
+
+#input-button{
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 19px;
+}
+
+#input-text{
+    margin: 0;
+}
