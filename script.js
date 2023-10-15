@@ -16,6 +16,15 @@ if (localStorage.getItem("backgroundColorA")){
     colorB.value = rgb2hex(backgroundColor[1]);
 }
 
+const input = document.querySelector('input');
+
+input.addEventListener('keydown', function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+    }
+});
+
+
 ColorUpdate();
 
 colorA.oninput = function (e){
