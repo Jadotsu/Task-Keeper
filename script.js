@@ -18,13 +18,6 @@ if (localStorage.getItem("backgroundColorA")){
 
 const input = document.querySelector('input');
 
-input.addEventListener('keydown', function(event) {
-    if (event.keyCode === 13) {
-        event.preventDefault();
-    }
-});
-
-
 ColorUpdate();
 
 colorA.oninput = function (e){
