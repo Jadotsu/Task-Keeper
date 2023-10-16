@@ -129,7 +129,12 @@ const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 let UID = 1;
 let userName = "";
 let tasks = {};
-let homeNotes = "";
+let homeNotes = "~Change settings with ☰\n" +
+    "~Move tasks with ⬍\n" +
+    "~Check off a task with ◯\n" +
+    "~Open by clicking the text.\n" +
+    "~Delete a task with ×\n" +
+    "~Your info is stored locally!";
 let activeTask = 0;
 let firstLoad = 0;
 
@@ -310,7 +315,9 @@ function LoadData() {
         tasks = JSON.parse(localStorage.getItem("TaskList")) || tasks;
         UID = localStorage.getItem("lastUID") || UID;
         userName = localStorage.getItem("UserName") || userName;
-        homeNotes = localStorage.getItem("HomeNotes") || homeNotes;
+        if (localStorage.getItem("HomeNotes") !== null){
+            homeNotes = localStorage.getItem("HomeNotes");
+        }
         activeTask = localStorage.getItem("ActiveTask") || activeTask;
         if (activeTask == 0) {
             returnButton.classList.toggle("hide",true);
