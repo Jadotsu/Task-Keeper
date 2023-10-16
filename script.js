@@ -186,10 +186,25 @@ returnButton.addEventListener("click",function(e){
     }
 });
 
-addButton.addEventListener("click",AddTask,false);
+addButton.addEventListener("click",function(e){
+    AddTask(addText.value);
+},false);
 addText.addEventListener("keypress",function(e){
     if (e.key==="Enter"){
-        AddTask();
+        AddTask(addText.value);
+    }
+}, false);
+
+addText.addEventListener("paste",function(e){
+    const pasted = (event.clipboardData || window.clipboardData).getData("text");
+    const split = pasted.split(/\r?\n/);
+    if (split.length > 1){
+        split.forEach(e => {
+            AddTask(e);
+            setTimeout(function(){
+                addText.value = '';
+            });
+        });
     }
 }, false);
 
@@ -197,10 +212,10 @@ notesText.addEventListener("input",function(e){
     SaveNote();
 }, false);
 
-function AddTask(){
-    if(addText.value !== ''){
+function AddTask(text){
+    if(text !== ''){
         let task = {
-            Task:sanitize(addText.value),
+            Task:sanitize(text),
             Notes:"",
             ID:UID++,
             checked:false,
