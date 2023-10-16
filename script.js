@@ -16,6 +16,11 @@ if (localStorage.getItem("backgroundColorA")){
     colorB.value = rgb2hex(backgroundColor[1]);
 }
 
+function saveSort(){
+
+}
+
+
 const input = document.querySelector('input');
 
 ColorUpdate();
@@ -150,6 +155,27 @@ if (tasks !== null) {
 } else {
     tasks = {};
 }
+
+Sortable.create(document.getElementById("list"),{
+    animation:150,
+    handle:".handle",
+    ghostClass:'ghost-class',
+    store: {
+        // Sorting acquisition (called during initialization)
+        get: function (sortable) {
+            console.log("get");
+            let order = localStorage.getItem("order"+activeTask);
+            return order ? order.split('|') : [];
+        },
+
+        // Saving the acquired sorting (called each time upon sorting modification)
+        set: function (sortable) {
+            console.log("set");
+            let order = sortable.toArray();
+            localStorage.setItem("order"+activeTask, order.join('|'));
+        }
+    }
+});
 
 
 
