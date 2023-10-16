@@ -40,12 +40,12 @@
     </div>
     <hr>
     <div id="content" class="main-width">
-        <div id="input-div">
+        <div id="input-div" class="list-group col">
             <button id="input-button">+</button>
-            <input type="text" maxlength="48" id="input-text" placeholder="New task..."  autocomplete="off" tabindex="-1" >
+            <input type="text" maxlength="80" id="input-text" placeholder="New task..."  autocomplete="off" tabindex="-1" >
         </div>
-        <ul id="list">
-        </ul>
+        <div id="list">
+        </div>
     </div>
     <hr>
     <div id="notes" class="main-width">
@@ -55,6 +55,14 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="script.js"defer></script>
+<script src="Sortable.js"></script>
+<script src="script.js"type="module"defer></script>
+<script>
+    new Sortable(document.getElementById("list"),{
+        animation:150,
+        handle:".handle",
+        ghostClass:'ghost-class'
+    });
+</script>
 </body>
 </html>

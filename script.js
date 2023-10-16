@@ -107,6 +107,9 @@ function CloseMenu(){
     document.getElementById("change-colors-div").classList.toggle("menu-hide",true);
     document.getElementById("name-input-div").classList.toggle("menu-hide",true);
     document.getElementById("menu-back").classList.toggle("menu-hide",true);
+    document.getElementById("change-name").innerHTML = "> Change Name";
+    document.getElementById("change-colors").innerHTML = "> Change Colors";
+    document.getElementById("reset-all").innerHTML = "> Reset Data";
 }
 
 function UpdateName(name){
@@ -210,12 +213,13 @@ function AddTask(){
 }
 
 function BuildTask(task){
-    let li = document.createElement("li");
-    li.classList.add("task");
+    let li = document.createElement("div");
+    li.classList.add("task")
+    li.classList.add("list-group-item");
     li.id = task.ID;
-    li.innerHTML = "<button class=\"taskOpen\">▲</button>" +
+    li.innerHTML = "<div class=\"handle\"><p>⬍&nbsp;</p></div>" +
         "<div class=\"taskBounds\">\n" +
-        "<div class=\"taskImage\"><p>☰</p></div>\n" +
+        "<button class=\"taskImage\"><p>☰</p></button>\n" +
         "<div class=\"taskTextContainer\"><div class=\"taskText\">"+task.Task+"</div></div>\n" +
         "</div>\n" +
         "<button class=\"taskDelete\">×</button>";
@@ -229,9 +233,7 @@ function BuildTask(task){
     },false);
 
     let openButton = li.querySelector(".taskOpen");
-    openButton.addEventListener("click",function(e){
-       OpenTask(task.ID);
-    });
+
     if (task.checked){
         li.classList.add("checked");
     }
@@ -243,12 +245,12 @@ function BuildTask(task){
         deleteButton.style.width = "24px";
         deleteButton.style.fontSize = "20px";
     }
-    let taskBounds = li.querySelector(".taskBounds");
-    taskBounds.addEventListener("click", function(e){
+    let checkClick = li.querySelector(".taskImage");
+    checkClick.addEventListener("click", function(e){
         if (task.folder){
             OpenTask(task.ID);
         } else {
-            taskBounds.parentElement.classList.toggle("checked");
+            checkClick.parentElement.parentElement.classList.toggle("checked");
             task.checked = !task.checked;
             if (activeTask != 0) {
                 FolderCheck(activeTask);
@@ -257,9 +259,15 @@ function BuildTask(task){
         }
     }, false);
 
+    let taskText = li.querySelector(".taskTextContainer");
+    taskText.addEventListener("click", function(e){
+        OpenTask(task.ID);
+    }, false);
+
+
     const txt =  li.querySelector(".taskText");
     const nWidth = textWidth(task.Task,"20px");
-    txt.style.fontSize = clamp(20*190/nWidth,9,20)+"px";
+    txt.style.fontSize = clamp(20*190/nWidth,16,20)+"px";
 }
 
 function DeleteTask(taskID) {
